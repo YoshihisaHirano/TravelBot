@@ -1,0 +1,27 @@
+{
+  "name": "travel_bot",
+  "version": "1.0.0",
+  "description": "a training chatbot project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YoshihisaHirano/TravelBot.git"
+  },
+  "keywords": [
+    "chatbot",
+    "api"
+  ],
+  "author": "Zubkova",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/YoshihisaHirano/TravelBot/issues"
+  },
+  "homepage": "https://github.com/YoshihisaHirano/TravelBot#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4"
+  }
+}

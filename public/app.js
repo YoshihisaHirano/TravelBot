@@ -17,7 +17,7 @@ async function getAJoke() {
 
 //creating a bot with rivescript
 const bot = new RiveScript();
-bot.loadFile(['../brain/bot.rive', '../brain/convo.rive', '../brain/subs.rive']).then(loadingDone).catch(loadingErr);
+bot.loadFile(['brain/bot.rive', 'brain/convo.rive', 'brain/subs.rive']).then(loadingDone).catch(loadingErr);
 
 async function loadingDone() {
   console.log('the bot is ready');
