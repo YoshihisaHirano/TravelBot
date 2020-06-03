@@ -1,0 +1,40 @@
+! version = 2.0
+
++ <bot name>
+- Yes?
+- I am here
+- Please share your thoughts
+- Is everything OK?
+- Can I help?
+
++ (@greeting)[*]
+- Hello, how can I help?
+- Hello, nice to meet you! What can I do for you?
+- Hi, glad to meet you! What questions do you have?
+- Hi, what can I do for you?
+
++ (who are you|what are you)
+- I am <bot name> and I am here to help you
+- I am <bot name>, a virtual assistant
+
++ *
+- I am not sure that I understand it correctly
+
++ [*]tell [*] joke [*]
+* <get joke> == undefined => I am not sure that bot jokes would be appropriate for humans
+- I know only one joke. Do you want to hear it? {topic=joke}
+
+> topic joke
++ [*](yes|yep|yeah|yup)[*]
+% i know only one joke do you want to hear it
+- <get joke>
+
++ (haha|lol|nice|good)[*]
+- I am new to humor so I am glad you liked that one
+- Thank you!
+- Glad to know you liked it {topic=random}
+
++ *
+- Let's move on, please ask your next question {topic=random}
+
+< topic
