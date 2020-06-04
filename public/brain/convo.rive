@@ -17,30 +17,37 @@
 - I am <bot name> and I am here to help you
 - I am <bot name>, a virtual assistant
 
++ (what can you [do]|what are you for|how can you help)
+- I can provide you with information about the weather, air quality and local currency, recommend you some restaurants and show you GIFs.
+
 + *
 - I am not sure that I understand it correctly
 
 + [*]tell [*] joke [*]
 * <get joke> == undefined => I am not sure that bot jokes would be appropriate for humans
-- I know only one joke. Do you want to hear it? {topic=joke}
-
-> topic joke
-+ [*](@affirmation)[*]
-% i know only one joke do you want to hear it
 - <get joke>
 
 + (haha|lol|nice|good)[*]
-- I am new to humor so I am glad you liked that one
 - Thank you!
-- Glad to know you liked it {topic=random}
+- Glad you liked it
 
-+ *
-- Let's move on, please ask your next question {topic=random}
++ [*](where am i[@now]|what place am i[@now] in[@now]|what is my[current] (location|position))[*]
+* <get country> == Undefined => You haven't specified your geolocation
+* <get city> == Undefined => It seems that your geolocation is unavailable
+* <get state> == Undefined => Unfortunately, I cannot get acces to your current position
+- You are currently in <get city> of <get state>, <get country>
 
-< topic
++ [*]what [*]currency [*][@here]
+* <get currency> == Undefined => Unfortunately, I cannot get this information without knowing your current position
+- <get currency> is the currency that is used here
+- <get currency> is used here
+- You can use <get currency>s here to pay
 
-> topic location
++ [*] (gif|gifs) [*]
+- If you want to see some GIFs, please type "I want to see GIFs"
 
-+ (where am i [@now]|what place am i [@now] in [@now]|what is my [current] location)
++ i want to see gifs
+- Please enjoy. If you want them to be removed, please type 'remove gif' any time
 
-< topic
++ remove gif
+- Done!

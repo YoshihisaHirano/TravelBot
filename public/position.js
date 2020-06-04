@@ -6,7 +6,6 @@ export default function getPosition() {
     navigator.geolocation.getCurrentPosition(async (position) => {
       userPosition.lat = position.coords.latitude;
       userPosition.lon = position.coords.longitude;
-      console.log(userPosition.lon)
 
       const resp = await fetch(`/geolocation/${userPosition.lat},${userPosition.lon}/`);
       const geoData = await resp.json();
@@ -18,7 +17,7 @@ export default function getPosition() {
         userPosition.city_or_district = result.city || result.state_district;
         userPosition.currency = geoData.results[0].annotations.currency.name;
       }
-      console.log(geoData);
+      //console.log(geoData);
     })
     return userPosition;
   } else {

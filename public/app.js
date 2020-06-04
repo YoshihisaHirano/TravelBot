@@ -1,11 +1,13 @@
+import getPosition from './position.js';
+import { getAJoke, getAGif, showGif } from './play.js';
+
+
 const input = document.getElementById('user_input');
 const button = document.getElementById('button');
 const output = document.getElementById('output');
-import getPosition from './position.js';
-import getAJoke from './play.js';
 
 const position = getPosition();
-console.log(position);
+//console.log(position);
 
 //creating a bot with rivescript
 const bot = new RiveScript();
@@ -16,13 +18,8 @@ async function loadingDone() {
   bot.sortReplies();
   let username = 'local-user';
   const joke = await getAJoke();
-  //setting some variables so that bot is aware of user's current location and other stuff
-
+  //pre-loading a joke
   bot.reply(username, `h7h9h2 set ${joke}`);
-  bot.reply(username, `a8k2f5 set ${position.country}`);
-  bot.reply(username, `i0k4p2 set ${position.currency}`);
-  bot.reply(username, `h6y4w3 set ${position.city_or_district}`);
-  bot.reply(username, `j9p1x0 set ${position.state}`);
 }
 
 function loadingErr(err) {
@@ -32,9 +29,22 @@ function loadingErr(err) {
 button.addEventListener('click', chat);
 
 async function chat() {
-  const userInput = input.value;
+  //setting some variables so that bot is aware of user's current location and other stuff
+  bot.reply('local-user', `a8k2f5 set ${position.country}`);
+  bot.reply('local-user', `i0k4p2 set ${position.currency}`);
+  bot.reply('local-user', `h6y4w3 set ${position.city_or_district}`);
+  bot.reply('local-user', `j9p1x0 set ${position.state}`);
+
+  //enabling chatting
+  const userInput = input.value.trim().toLowerCase();
   let reply = await bot.reply('local-user', userInput);
   reply = reply.replace('yup', ' --- '); //this line is formatting a joke a little bit
+
+
+  if(/gif/.test(userInput)) {
+      await showGif(userInput, 3);
+  }
+
   output.textContent = reply;
   input.value = '';
 }
