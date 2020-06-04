@@ -24,24 +24,24 @@
 - I am not sure that I understand it correctly
 
 + [*]tell [*] joke [*]
-* <get joke> == undefined => I am not sure that bot jokes would be appropriate for humans
-- <get joke>
+* <bot joke> == undefined => I am not sure that bot jokes would be appropriate for humans
+- <bot joke>
 
 + (haha|lol|nice|good)[*]
 - Thank you!
 - Glad you liked it
 
 + [*](where am i[@now]|what place am i[@now] in[@now]|what is my[current] (location|position))[*]
-* <get country> == Undefined => You haven't specified your geolocation
-* <get city> == Undefined => It seems that your geolocation is unavailable
-* <get state> == Undefined => Unfortunately, I cannot get acces to your current position
-- You are currently in <get city> of <get state>, <get country>
+* <bot country> == undefined => You haven't specified your geolocation
+* <bot city> == undefined => It seems that your geolocation is unavailable
+* <bot state> == undefined => Unfortunately, I cannot get acces to your current position
+- You are currently in <bot city> of <bot state>, <bot country>
 
 + [*]what [*]currency [*][@here]
-* <get currency> == Undefined => Unfortunately, I cannot get this information without knowing your current position
-- <get currency> is the currency that is used here
-- <get currency> is used here
-- You can use <get currency>s here to pay
+* <get currency> == undefined => Unfortunately, I cannot get this information without knowing your current position
+- <bot currency> is the currency that is used here
+- <bot currency> is used here
+- You can use <bot currency>s here to pay
 
 + [*] (gif|gifs) [*]
 - If you want to see some GIFs, please type "I want to see GIFs"
@@ -51,3 +51,8 @@
 
 + remove gif
 - Done!
+
++ [*] (fuck|fucker|shit|damn|shut up|bitch) [*]
+- Does it make you feel strong to use that kind of language?
+- Are you venting your feelings now?
+- Does using that kind of language make you feel better?
