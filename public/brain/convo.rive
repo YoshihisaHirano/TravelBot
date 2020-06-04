@@ -25,7 +25,7 @@
 - I know only one joke. Do you want to hear it? {topic=joke}
 
 > topic joke
-+ [*](yes|yep|yeah|yup)[*]
++ [*](@affirmation)[*]
 % i know only one joke do you want to hear it
 - <get joke>
 
@@ -36,5 +36,11 @@
 
 + *
 - Let's move on, please ask your next question {topic=random}
+
+< topic
+
+> topic location
+
++ (where am i [@now]|what place am i [@now] in [@now]|what is my [current] location)
 
 < topic

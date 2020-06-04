@@ -151,4 +151,6 @@
 ! person i       = you
 
 //arrays
-! array greeting = hello|hi|howdy|good morning|good evening|good day 
+! array greeting = hello|hi|howdy|good morning|good evening|good day
+! array affirmation = yes|yup|sure|yeah|of course|for sure|yep
+! array now = now|currently|at the moment|at this moment|this time
