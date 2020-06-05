@@ -1,6 +1,6 @@
 import getPosition from './position.js';
 import { getAJoke, getAGif, showGif } from './play.js';
-import getWeather from './weather.js';
+import { getWeather, getAirQuality } from './weather.js';
 
 const input = document.getElementById('user_input');
 const button = document.getElementById('button');
@@ -29,6 +29,9 @@ function loadingErr(err) {
 }
 
 async function chat() {
+
+//checking if the object with geolocation data was returned instead of 'geolocation unavailable'
+if(position.hasOwnProperty('lat')) {
   //setting some variables so that bot is aware of user's current location and other stuff
   bot.setVariable('country', position.country)
   bot.setVariable('currency', position.currency)
@@ -42,6 +45,13 @@ async function chat() {
   bot.setVariable('temperature', `${weather.main.temp} °C`);
   bot.setVariable('speed', `${weather.wind.speed} m/s`);
   bot.setVariable('humidity', `${weather.main.humidity}%`);
+
+  const airQuality = await getAirQuality(position);
+  if(typeof airQuality !== 'string') {
+    bot.setVariable('quantity', `${airQuality[0].value}${airQuality[0].unit}`);
+    bot.setVariable('particle', airQuality[0].parameter);
+  }
+}
 
   //enabling chatting
   const userInput = input.value.trim().toLowerCase();

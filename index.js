@@ -16,21 +16,31 @@ app.listen(PORT);
 app.use(express.static('public'));
 app.use(express.json({ limit: '1mb'}));
 
-app.get('/geolocation/:latlon', async (request, response) => {
+const getLocation = (request, response, next) => {
   const latlon = request.params.latlon.split(',');
   const [ lat, lon ] = latlon;
-  const geo_url = `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=${geo_api}`;
+  request.lat = lat;
+  request.lon = lon;
+  next();
+}
+
+app.get('/geolocation/:latlon', getLocation, async (request, response) => {
+  const geo_url = `https://api.opencagedata.com/geocode/v1/json?q=${request.lat}+${request.lon}&key=${geo_api}`;
   const resp = await fetch(geo_url);
   const data = await resp.json();
   response.send(data);
-  //console.log(data);
 })
 
-app.get('/weather/:latlon', async (request, response) => {
-  const latlon = request.params.latlon.split(',');
-  const [ lat, lon ] = latlon;
-  const weather_url = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${weather_api}&units=metric`;
+app.get('/weather/:latlon', getLocation, async (request, response) => {
+  const weather_url = `http://api.openweathermap.org/data/2.5/weather?lat=${request.lat}&lon=${request.lon}&appid=${weather_api}&units=metric`;
   const resp = await fetch(weather_url);
+  const data = await resp.json();
+  response.send(data);
+})
+
+app.get('/air/:latlon', getLocation, async (request, response) => {
+  const airQuality_url = `https://api.openaq.org/v1/latest?coordinates=${request.lat},${request.lon}`;
+  const resp = await fetch(airQuality_url);
   const data = await resp.json();
   response.send(data);
 })

@@ -50,6 +50,11 @@
 * <bot humidity> == undefined => Something went wrong in the cloud so they cannot send me correct data.
 - <bot weather> The temperature is <bot temperature>, the wind speed is <bot speed> and the humidity is <bot humidity>.
 
++ [*]what [*] air quality[*]
+* <bot particle> == undefined => It seems that air quality readings are not available right now
+- The air has <bot quantity> of <bot particle> in it.
+//To learn what that means you can visit <a href="http://www.npi.gov.au/substances/fact-sheets">this site</a> -- to work out how to insert a link
+
 + [*] (gif|gifs) [*]
 - If you want to see some GIFs, please type "I want to see GIFs"
 
