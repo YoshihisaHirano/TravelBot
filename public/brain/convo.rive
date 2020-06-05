@@ -43,6 +43,13 @@
 - <bot currency> is used here
 - You can use <bot currency>s here to pay
 
++ [*]what [*] weather [*][today|@now]
+* <bot weather> == undefined => I cannot access weather data without knowing your current geolocation
+* <bot temperature> == undefined => <bot weather> However I don't know anything else about current weather
+* <bot speed> == undefined => Seems that there's not enough data to tell
+* <bot humidity> == undefined => Something went wrong in the cloud so they cannot send me correct data.
+- <bot weather> The temperature is <bot temperature>, the wind speed is <bot speed> and the humidity is <bot humidity>.
+
 + [*] (gif|gifs) [*]
 - If you want to see some GIFs, please type "I want to see GIFs"
 

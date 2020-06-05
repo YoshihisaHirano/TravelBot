@@ -26,8 +26,13 @@ app.get('/geolocation/:latlon', async (request, response) => {
   //console.log(data);
 })
 
-app.get('/weather/:city', async (request, response) => {
-
+app.get('/weather/:latlon', async (request, response) => {
+  const latlon = request.params.latlon.split(',');
+  const [ lat, lon ] = latlon;
+  const weather_url = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${weather_api}&units=metric`;
+  const resp = await fetch(weather_url);
+  const data = await resp.json();
+  response.send(data);
 })
 
 app.get('/gif', async (request, response) => {

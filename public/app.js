@@ -1,5 +1,6 @@
 import getPosition from './position.js';
 import { getAJoke, getAGif, showGif } from './play.js';
+import getWeather from './weather.js';
 
 const input = document.getElementById('user_input');
 const button = document.getElementById('button');
@@ -16,32 +17,35 @@ async function loadingDone() {
   console.log('the bot is ready');
   bot.sortReplies();
   let username = 'local-user';
+
   //pre-loading a joke
-  //bot.reply(username, `h7h9h2 set ${joke}`);
   const joke = await getAJoke();
   bot.setVariable('joke', joke);
+
 }
-
-//setting some variables so that bot is aware of user's current location and other stuff
-bot.setVariable('country', position.country)
-bot.setVariable('currency', position.currency)
-bot.setVariable('city', position.city_or_district)
-bot.setVariable('state', position.state)
-
 
 function loadingErr(err) {
   console.error(err);
 }
 
-button.addEventListener('click', chat);
-
-
 async function chat() {
+  //setting some variables so that bot is aware of user's current location and other stuff
+  bot.setVariable('country', position.country)
+  bot.setVariable('currency', position.currency)
+  bot.setVariable('city', position.city_or_district)
+  bot.setVariable('state', position.state)
+
+//getting information about the weather and setting weather variables
+  const weather =  await getWeather(position);
+  //console.log(weather.weather[0].main)
+  bot.setVariable('weather', `${weather.weather[0].main}.`);
+  bot.setVariable('temperature', `${weather.main.temp} °C`);
+  bot.setVariable('speed', `${weather.wind.speed} m/s`);
+  bot.setVariable('humidity', `${weather.main.humidity}%`);
 
   //enabling chatting
   const userInput = input.value.trim().toLowerCase();
   let reply = await bot.reply('local-user', userInput);
-  reply = reply.replace('yup', ' --- '); //this line is formatting a joke a little bit
 
 //if gif topic emerges, this gif-retrieving and gif-showing function is invoked
   if(/gif/.test(userInput)) {
@@ -51,3 +55,6 @@ async function chat() {
   output.textContent = reply;
   input.value = '';
 }
+
+//adding functionality to submit button
+button.addEventListener('click', chat);
